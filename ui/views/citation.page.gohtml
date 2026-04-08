@@ -1,0 +1,19 @@
+{{define "citation"}}
+<div id="citation">
+  <dl>
+    <dt>Title</dt>
+    <dd>{{.Citation.Title}}</dd>
+    <dt>Author</dt>
+    <dd>{{.Citation.Author}}</dd>
+    <dt>Publication Date</dt>
+    <dd>{{.Citation.PublicationDate}}</dd>
+    <dt>Publisher</dt>
+    <dd>{{.Citation.Publisher}}</dd>
+    <dt>URL</dt>
+    <dd><a href="{{.Citation.URL}}">{{.Citation.URL}}</a></dd>
+    <dt>Version</dt>
+    <dd>{{.Citation.Version}}</dd>
+  </dl>
+  <p><a href="/?ref={{.Key}}">Share</a></p>
+</div>
+{{end}}

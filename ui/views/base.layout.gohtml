@@ -1,0 +1,22 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <meta name="theme-color" content="#3a3350">
+    <title>{{template "title" .}} - No Citation Needed</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+</head>
+<body>
+{{template "nav" .}}
+<main>
+    {{template "main" .}}
+</main>
+{{template "footer" .}}
+</body>
+</html>
+{{end}}

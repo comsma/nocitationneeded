@@ -1,0 +1,23 @@
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+<section>
+  <form hx-post="/cite" hx-target="#result" hx-swap="innerHTML">
+    <input type="text" name="url" placeholder="Article URL" required>
+    <select name="style">
+      <option value="apa">APA</option>
+      <option value="mla">MLA</option>
+      <option value="chicago">Chicago</option>
+      <option value="ieee">IEEE</option>
+    </select>
+    <div class="h-captcha" data-sitekey="{{ .SiteKey }}"></div>
+    <br />
+    <button type="submit">Cite</button>
+  </form>
+  <div id="result">
+    {{if .Citation}}
+      {{template "citation" .}}
+    {{end}}
+  </div>
+</section>
+{{end}}
