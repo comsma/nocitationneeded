@@ -18,6 +18,10 @@ var sites = []struct {
 		url:  "https://thehill.com/homenews/administration/5820244-vance-warns-iran-war-chaos/",
 	},
 	{
+		name: "Medium",
+		url:  "https://medium.com/@yawgyamfiprempeh27/i-built-a-production-grade-kubernetes-platform-in-48-hours-db5629fba0e3",
+	},
+	{
 		name: "BBC News",
 		url:  "https://www.bbc.com/news/articles/czjwp1vjn9lo",
 	},

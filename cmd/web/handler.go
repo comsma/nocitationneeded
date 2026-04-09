@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"html/template"
 	"net/http"
+	"time"
 
 	"github.com/comsma/nocitationneeded/internal/cache"
 	"github.com/comsma/nocitationneeded/internal/scraper"
@@ -14,6 +15,18 @@ import (
 var (
 	siteKey = "055a0c5a-ccde-4c32-bd2a-912c6d88b8ca"
 )
+
+//TODO global template registration
+
+var funcs = template.FuncMap{
+	"formatDate": func(s string) string {
+		t, err := time.Parse(time.RFC3339, s)
+		if err != nil {
+			return s
+		}
+		return t.Format("January, 02, 2006")
+	},
+}
 
 type Handler struct {
 	e             *echo.Echo
@@ -30,7 +43,7 @@ func NewHandler(e *echo.Echo, citationCache *cache.CitationCache, s *scraper.Scr
 }
 
 func (h *Handler) GetHome(c *echo.Context) error {
-	tmpl, err := template.ParseGlob("ui/views/*.gohtml")
+	tmpl, err := template.New("").Funcs(funcs).ParseGlob("ui/views/*.gohtml")
 	if err != nil {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}
@@ -53,7 +66,7 @@ func (h *Handler) GetHome(c *echo.Context) error {
 }
 
 func (h *Handler) PostCite(c *echo.Context) error {
-	tmpl, err := template.ParseGlob("ui/views/*.gohtml")
+	tmpl, err := template.New("").Funcs(funcs).ParseGlob("ui/views/*.gohtml")
 	if err != nil {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}

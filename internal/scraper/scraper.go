@@ -2,52 +2,47 @@ package scraper
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 	htmlesc "html"
 	"net"
 	"net/http"
+
 	"strings"
 
 	"github.com/comsma/nocitationneeded/internal/cache"
 	utls "github.com/refraction-networking/utls"
 	"golang.org/x/net/html"
+	"golang.org/x/net/http2"
 )
 
 type Scraper struct {
 	client *http.Client
 }
 
+// TODO fix resource leak warning
+func dialTLS(ctx context.Context, network, addr string, _ *tls.Config) (net.Conn, error) {
+	host, _, err := net.SplitHostPort(addr)
+	if err != nil {
+		return nil, err
+	}
+	conn, err := (&net.Dialer{}).DialContext(ctx, network, addr)
+	if err != nil {
+		return nil, err
+	}
+	uconn := utls.UClient(conn, &utls.Config{ServerName: host}, utls.HelloChrome_Auto)
+	if err := uconn.HandshakeContext(ctx); err != nil {
+		conn.Close()
+		return nil, err
+	}
+	return uconn, nil
+}
+
 func New() *Scraper {
 	return &Scraper{
 		client: &http.Client{
-			Transport: &http.Transport{
-				DialTLSContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
-					host, _, err := net.SplitHostPort(addr)
-					if err != nil {
-						return nil, err
-					}
-					// Retry up to 5 times: HelloRandomizedNoALPN occasionally picks a
-					// fingerprint with post-quantum curves unsupported by this Go build.
-					const maxTries = 5
-					for range maxTries {
-						conn, err := (&net.Dialer{}).DialContext(ctx, network, addr)
-						if err != nil {
-							return nil, err
-						}
-						uconn := utls.UClient(conn, &utls.Config{
-							ServerName: host,
-						}, utls.HelloRandomizedNoALPN)
-						if err := uconn.HandshakeContext(ctx); err != nil {
-							conn.Close()
-							if strings.Contains(err.Error(), "unsupported curve") {
-								continue
-							}
-							return nil, err
-						}
-						return uconn, nil
-					}
-					return nil, fmt.Errorf("failed to complete TLS handshake after %d attempts", maxTries)
-				},
+			Transport: &http2.Transport{
+				DialTLSContext: dialTLS,
 			},
 		},
 	}
@@ -59,10 +54,13 @@ func (s *Scraper) Scrape(ctx context.Context, rawURL string) (*cache.Citation, e
 		return nil, fmt.Errorf("creating request: %w", err)
 	}
 
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7")
 	req.Header.Set("Accept-Language", "en-US,en;q=0.9")
 	req.Header.Set("Upgrade-Insecure-Requests", "1")
+	req.Header.Set("Sec-Ch-Ua", `"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"`)
+	req.Header.Set("Sec-Ch-Ua-Mobile", "?0")
+	req.Header.Set("Sec-Ch-Ua-Platform", `"macOS"`)
 	req.Header.Set("Sec-Fetch-Dest", "document")
 	req.Header.Set("Sec-Fetch-Mode", "navigate")
 	req.Header.Set("Sec-Fetch-Site", "none")

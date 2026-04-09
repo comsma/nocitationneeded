@@ -41,7 +41,7 @@
 
 body {
   font-family: 'PPNeueCorp', sans-serif;
-  background: #f5f5f0;
+  background: #3a3350; /* Placeholder for primary color */
   color: #1a1a1a;
   display: flex;
   flex-direction: column;
@@ -61,9 +61,10 @@ nav {
 nav a {
   color: #f5f5f0;
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin: auto;
 }
 
 nav a:hover {
@@ -90,6 +91,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  background: #f5f5f0;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"],
@@ -132,8 +137,16 @@ button[type="submit"]:hover {
   margin-top: 2rem;
 }
 
+#citation {
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #f5f5f0;
+}
+
 #citation dl dt {
     font-weight: 800;
+    color: #5e5969;
     margin-top: 1rem;
 }
 
