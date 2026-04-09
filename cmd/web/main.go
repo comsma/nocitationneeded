@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/comsma/nocitationneeded/internal/cache"
+	"github.com/comsma/nocitationneeded/internal/config"
 	"github.com/comsma/nocitationneeded/internal/scraper"
 	"github.com/labstack/echo/v5"
 	"github.com/labstack/echo/v5/middleware"
@@ -27,8 +28,14 @@ func main() {
 
 	e := echo.New()
 	e.Use(middleware.RequestLogger())
+	e.Use(middleware.Gzip())
 
-	h := NewHandler(e, citationCache, s)
+	cfg, err := config.LoadConfig("config.yaml")
+	if err != nil {
+		log.Fatalf("failed to load config: %v", err)
+	}
+
+	h := NewHandler(e, citationCache, s, cfg)
 
 	e.Static("/static", "ui/static")
 
