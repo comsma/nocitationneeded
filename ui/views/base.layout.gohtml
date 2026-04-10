@@ -5,14 +5,15 @@
     <meta charset='UTF-8'>
     <meta name="theme-color" content="#3a3350">
     <title>{{template "title" .}} - No Citation Needed</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/output.css">
     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
     <script src="/static/js/htmx.min.js"></script>
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body>
+<body class="font-corp bg-brand text-surface-900 flex flex-col min-h-screen">
 {{template "nav" .}}
-<main>
+<main class="flex-1 flex justify-center py-12 px-4">
     {{template "main" .}}
 </main>
 {{template "footer" .}}

@@ -1,19 +1,19 @@
 {{define "citation"}}
-<div id="citation">
-  <dl>
-    <dt>Title</dt>
+<div id="citation" class="p-6 rounded shadow bg-cream">
+  <dl class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 items-baseline">
+    <dt class="font-black text-label">Title</dt>
     <dd>{{.Citation.Title}}</dd>
-    <dt>Author</dt>
+    <dt class="font-black text-label">Author</dt>
     <dd>{{.Citation.Author}}</dd>
-    <dt>Publication Date</dt>
+    <dt class="font-black text-label">Publication Date</dt>
     <dd>{{formatDate .Citation.PublicationDate}}</dd>
-    <dt>Publisher</dt>
+    <dt class="font-black text-label">Publisher</dt>
     <dd>{{.Citation.Publisher}}</dd>
-    <dt>URL</dt>
-    <dd><a href="{{.Citation.URL}}">{{.Citation.URL}}</a></dd>
-    <dt>Version</dt>
+    <dt class="font-black text-label">URL</dt>
+    <dd><a href="{{.Citation.URL}}" class="underline hover:text-muted">{{.Citation.URL}}</a></dd>
+    <dt class="font-black text-label">Version</dt>
     <dd>{{.Citation.Version}}</dd>
   </dl>
-  <p><a href="/?ref={{.Key}}">Share</a></p>
+  <p class="mt-4"><a href="/?ref={{.Key}}" class="underline hover:text-muted">Share</a></p>
 </div>
 {{end}}

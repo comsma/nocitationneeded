@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@plugin "daisyui";
+
+@theme {
+    /* Brand scale — muted violet, H=254 S=22%, anchored at brand-800 (#3a3350) */
+    --color-brand-50:  hsl(254, 22%, 97%);
+    --color-brand-100: hsl(254, 22%, 93%);
+    --color-brand-200: hsl(254, 22%, 85%);
+    --color-brand-300: hsl(254, 22%, 72%);
+    --color-brand-400: hsl(254, 22%, 58%);
+    --color-brand-500: hsl(254, 22%, 46%);
+    --color-brand-600: hsl(254, 22%, 37%);
+    --color-brand-700: hsl(254, 22%, 30%);
+    --color-brand-800: hsl(254, 22%, 26%);
+    --color-brand-900: hsl(254, 22%, 18%);
+    --color-brand-950: hsl(254, 22%, 12%);
+
+    /* Surface scale — warm neutral, H=40 anchored at surface-100 (#f2f0ec) and surface-800 (#3c3830) */
+    --color-surface-50:  hsl(40, 20%, 98%);
+    --color-surface-100: hsl(40, 19%, 94%);
+    --color-surface-200: hsl(40, 16%, 88%);
+    --color-surface-300: hsl(40, 12%, 78%);
+    --color-surface-400: hsl(40, 9%,  65%);
+    --color-surface-500: hsl(40, 7%,  53%);
+    --color-surface-600: hsl(40, 9%,  42%);
+    --color-surface-700: hsl(40, 11%, 32%);
+    --color-surface-800: hsl(40, 11%, 21%);
+    --color-surface-900: hsl(40, 11%, 14%);
+    --color-surface-950: hsl(40, 11%, 9%);
+
+    /* Semantic tokens */
+    --color-brand:  hsl(254, 22%, 26%);
+    --color-cream:  hsl(40,  19%, 94%);
+    --color-muted:  hsl(254, 22%, 37%);
+    --color-label:  hsl(254, 10%, 50%);
+
+    --font-corp: 'PPNeueCorp', sans-serif;
+}
+
+@font-face {
+    font-family: 'PPNeueCorp';
+    src: url('/static/fonts/PPNeueCorp-NormalThin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PPNeueCorp';
+    src: url('/static/fonts/PPNeueCorp-NormalThinItalic.woff2') format('woff2');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PPNeueCorp';
+    src: url('/static/fonts/PPNeueCorp-NormalMedium.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PPNeueCorp';
+    src: url('/static/fonts/PPNeueCorp-NormalMediumItalic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PPNeueCorp';
+    src: url('/static/fonts/PPNeueCorp-NormalUltrabold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}

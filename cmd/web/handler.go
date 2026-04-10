@@ -20,6 +20,7 @@ var (
 )
 
 //TODO global template registration
+//TODO rate limit middleware
 
 var funcs = template.FuncMap{
 	"formatDate": func(s string) string {
