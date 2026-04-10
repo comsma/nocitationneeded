@@ -5,7 +5,7 @@
     "daisyui": "^5.5.19"
   },
   "scripts": {
-    "css": "npx @tailwindcss/cli  -i ./ui/static/styles/base.css -o ./ui/static/css/output.css",
+    "css": "npx @tailwindcss/cli  -i ./ui/static/styles/base.css -o ./ui/static/css/output.css --minify",
     "css:watch": "npx @tailwindcss/cli  -i ./ui/static/styles/base.css -o ./ui/static/css/output.css --watch"
   }
 }

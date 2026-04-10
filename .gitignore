@@ -1,4 +1,6 @@
 .idea
+.mcp.json
+.env
 config.yaml
 node_modules/
 ui/static/css/output.css

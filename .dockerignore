@@ -1,0 +1,9 @@
+node_modules/
+.git/
+.github/
+.idea/
+.claude/
+.agents/
+ui/static/css/output.css
+config.yaml
+skills-lock.json
