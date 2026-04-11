@@ -43,6 +43,7 @@
     src: url('/static/fonts/PPNeueCorp-NormalThin.woff2') format('woff2');
     font-weight: 100;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -50,6 +51,7 @@
     src: url('/static/fonts/PPNeueCorp-NormalThinItalic.woff2') format('woff2');
     font-weight: 100;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -57,6 +59,7 @@
     src: url('/static/fonts/PPNeueCorp-NormalMedium.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -64,6 +67,7 @@
     src: url('/static/fonts/PPNeueCorp-NormalMediumItalic.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -71,4 +75,5 @@
     src: url('/static/fonts/PPNeueCorp-NormalUltrabold.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
+    font-display: swap;
 }
